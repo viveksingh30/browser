@@ -1,0 +1,104 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
+
+
+	
+public class vivek extends JFrame{
+	 
+		
+	
+	//private static final long serialVersionUID = 1L;
+	private JTextField addressbar ;
+	private JEditorPane display;
+	
+	
+	public vivek(){
+		
+	super("BROWSER");	
+	addressbar = new JTextField("ENTER THE URL");
+	addressbar.addActionListener(
+			new ActionListener(){
+				
+				public void actionPerformed(ActionEvent event){
+					loadthesite(event.getActionCommand());
+					
+				                                              }
+			                    }
+		                         );
+		
+	
+	add(addressbar,BorderLayout.NORTH);
+	
+	
+	display = new JEditorPane();
+	display.setEditable(false);
+	display.addHyperlinkListener(
+			new HyperlinkListener(){
+				
+				public void hyperlinkUpdate(HyperlinkEvent event){
+					
+					
+					if(event.getEventType()==HyperlinkEvent.EventType.ACTIVATED){
+						
+						loadthesite(event.getURL().toString());
+						
+					                                                            }
+				                                                  }
+			                        }	
+	                            	);
+	
+	add(new JScrollPane(display),BorderLayout.CENTER);
+	
+	setSize(500,300);
+	setVisible(true);
+	}
+	
+	private void loadthesite(String userText){
+		
+		try{
+			display.setPage(userText);
+			addressbar.setText(userText);
+		    }
+		catch(Exception c){
+			System.out.println("error");
+		                  }
+                                         	}
+
+	
+
+
+                                            
+	
+}
+
+
+
+
+
+
+
+
+
+///   main class  //////
+
+
+
+
+
+
+import javax.swing.JFrame;
+public class mclass {
+
+public static void main (String[]  args){
+	
+	vivek obj = new vivek();
+	obj.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                                        }
+                    }
+
+
+
+
+
